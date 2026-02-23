@@ -1,0 +1,26 @@
+[
+    {
+        "id": "c1",
+        "name": "St. Mary's Cathedral",
+        "address": "St Marys Rd, Sydney NSW 2000",
+        "uri": "https://www.google.com/maps/dir/?api=1&destination=St+Marys+Cathedral+Sydney",
+        "massSchedule": [
+            "Sun: 7am, 9am, 10:30am (Solemn Choral Mass), 12:15pm, 6pm",
+            "Mon-Fri: 6:45am, 1:10pm, 5:30pm",
+            "Sat: 9am, 12pm, 6pm (Vigil)"
+        ],
+        "isDefault": true
+    },
+    {
+        "id": "c2",
+        "name": "St. Patrick's Church",
+        "address": "20 Grosvenor St, The Rocks NSW 2000",
+        "uri": "https://www.google.com/maps/dir/?api=1&destination=St+Patricks+Church+The+Rocks",
+        "massSchedule": [
+            "Sun: 8am, 9am, 10am, 11am, 12pm, 3pm, 4pm, 6pm",
+            "Mon-Fri: 8am, 12:05pm, 1:05pm",
+            "Sat: 12pm, 5:30pm (Vigil)"
+        ],
+        "isDefault": true
+    }
+]

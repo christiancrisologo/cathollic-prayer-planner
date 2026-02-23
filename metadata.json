@@ -1,0 +1,7 @@
+{
+  "name": "Catholic Prayer Planner",
+  "description": "A beautiful, kid-friendly Catholic spiritual companion for scheduling prayers, finding churches, and accessing a library of traditional orations.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

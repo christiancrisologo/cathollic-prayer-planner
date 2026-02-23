@@ -1,0 +1,72 @@
+[
+    {
+        "id": "r1",
+        "verse": "The Lord is my shepherd; I shall not want.",
+        "citation": "Psalm 23:1",
+        "reflection": "In the quiet of your heart, listen to the Good Shepherd's voice. He knows exactly what your soul needs today and will lead you to still waters.",
+        "isDefault": true
+    },
+    {
+        "id": "r2",
+        "verse": "I can do all things through Christ who strengthens me.",
+        "citation": "Philippians 4:13",
+        "reflection": "Your strength does not come from your own efforts, but from the grace poured out by our Lord. Lean on Him in your moments of weariness.",
+        "isDefault": true
+    },
+    {
+        "id": "r3",
+        "verse": "Be still, and know that I am God.",
+        "citation": "Psalm 46:10",
+        "reflection": "In a world of constant noise, silence is where we meet the Creator. Set aside a few minutes today to simply be in His holy presence.",
+        "isDefault": true
+    },
+    {
+        "id": "r4",
+        "verse": "Love one another as I have loved you.",
+        "citation": "John 13:34",
+        "reflection": "Christ's love is sacrificial and unconditional. Seek a small way to serve someone today without expecting anything in return.",
+        "isDefault": true
+    },
+    {
+        "id": "r5",
+        "verse": "For I know the plans I have for you, declares the Lord.",
+        "citation": "Jeremiah 29:11",
+        "reflection": "Even when the path seems unclear, trust that God is weaving a beautiful tapestry of your life. His timing is always perfect.",
+        "isDefault": true
+    },
+    {
+        "id": "r6",
+        "verse": "Thy word is a lamp unto my feet, and a light unto my path.",
+        "citation": "Psalm 119:105",
+        "reflection": "The Scriptures are not just old stories; they are a living guide. Let the Word of God illuminate the decisions you face today.",
+        "isDefault": true
+    },
+    {
+        "id": "r7",
+        "verse": "Give us this day our daily bread.",
+        "citation": "Matthew 6:11",
+        "reflection": "Focus on the grace available for today. God provides what we need for the present moment; trust Him with the worries of tomorrow.",
+        "isDefault": true
+    },
+    {
+        "id": "r8",
+        "verse": "The peace of God, which surpasses all understanding, will guard your hearts.",
+        "citation": "Philippians 4:7",
+        "reflection": "When anxiety rises, offer it to the Lord in prayer. His peace is a shield that protects our minds from the storms of life.",
+        "isDefault": true
+    },
+    {
+        "id": "r9",
+        "verse": "I am the way, and the truth, and the life.",
+        "citation": "John 14:6",
+        "reflection": "Following Jesus is not a set of rules, but a relationship. Walk with Him today as your constant companion and truest friend.",
+        "isDefault": true
+    },
+    {
+        "id": "r10",
+        "verse": "My soul magnifies the Lord, and my spirit rejoices in God my Savior.",
+        "citation": "Luke 1:46-47",
+        "reflection": "Like Mary, let your life be a mirror that reflects the goodness of God. Find joy in the small miracles He performs in your life.",
+        "isDefault": true
+    }
+]
