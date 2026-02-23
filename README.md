@@ -1,9 +1,6 @@
 
 # Catholic Prayer Planner
 
-
-![Catholic Prayer Planner Banner](https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6)
-
 ## ✨ Key Features
 
 - **🙏 Daily Reflections**: Start each day with scripture and a short meditation. Cycle through standard orations or add your own favorite verses.
