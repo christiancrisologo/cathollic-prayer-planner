@@ -6,6 +6,7 @@ import SpeakerIcon from './shared/SpeakerIcon';
 
 interface HomeTabProps {
   theme: ThemeType;
+  isDesktop: boolean;
   reflection: DailyReflection | null;
   allReflections: DailyReflection[];
   aiInsight: { gospel: string; enlightenment: string; prayer: string; sources: GroundingSource[] } | null;
@@ -21,7 +22,7 @@ interface HomeTabProps {
 }
 
 const HomeTab: React.FC<HomeTabProps> = ({
-  theme, reflection, allReflections, aiInsight, isGeneratingInsight, plannerEvents, isSpeaking, handleSpeak, onClearInsight,
+  theme, isDesktop, reflection, allReflections, aiInsight, isGeneratingInsight, plannerEvents, isSpeaking, handleSpeak, onClearInsight,
   onAddReflection, onUpdateReflection, onDeleteReflection, onSelectReflection
 }) => {
   const activeTheme = THEMES[theme];
@@ -91,7 +92,7 @@ const HomeTab: React.FC<HomeTabProps> = ({
   const isFormValid = !!(newRefl.verse?.trim() && newRefl.citation?.trim() && newRefl.reflection?.trim());
 
   return (
-    <div className="p-6 space-y-8 animate-fade-in pt-20 no-scrollbar pb-24">
+    <div className={`p-6 space-y-8 animate-fade-in ${isDesktop ? '' : 'pt-20'} no-scrollbar pb-24`}>
       <header className="pt-4 flex justify-between items-start">
         <div>
           <h1 className="font-cinzel text-3xl font-bold tracking-tight">Catholic Prayer Planner</h1>

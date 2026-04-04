@@ -5,6 +5,7 @@ import { THEMES } from '../constants';
 
 interface ChurchTabProps {
     theme: ThemeType;
+    isDesktop: boolean;
     favoriteChurches: Church[];
     onAddFavorite: (church: Church) => void;
     onUpdateFavorite: (church: Church) => void;
@@ -16,6 +17,7 @@ interface ChurchTabProps {
 
 const ChurchTab: React.FC<ChurchTabProps> = ({
     theme,
+    isDesktop,
     favoriteChurches,
     onAddFavorite,
     onUpdateFavorite,
@@ -129,7 +131,7 @@ const ChurchTab: React.FC<ChurchTabProps> = ({
     const isFormValid = !!(newChurch.name?.trim() && newChurch.address?.trim());
 
     return (
-        <div className="p-6 space-y-8 pt-20 animate-fade-in relative min-h-full no-scrollbar pb-24">
+        <div className={`p-6 space-y-8 ${isDesktop ? '' : 'pt-20'} animate-fade-in relative min-h-full no-scrollbar pb-24`}>
             <header className="flex justify-between items-start">
                 <div>
                     <h2 className="font-cinzel text-3xl font-bold tracking-tight ">Parish Finder</h2>

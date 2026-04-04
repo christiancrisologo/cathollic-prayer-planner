@@ -43,6 +43,7 @@ const App: React.FC = () => {
     message: ''
   });
   const [fallbackPrompt, setFallbackPrompt] = useState<{ isOpen: boolean; lat: number; lng: number; resolve: (results: Church[]) => void } | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     setPlannerEvents(storage.get('fiat_events', []));
@@ -77,6 +78,13 @@ const App: React.FC = () => {
     });
 
     return () => speech.stop();
+  }, []);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 500);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
   }, []);
 
   useEffect(() => storage.set('fiat_events', plannerEvents), [plannerEvents]);
@@ -224,32 +232,38 @@ const App: React.FC = () => {
 
   const activeTheme = THEMES[currentTheme];
 
+  const topToolbar = (
+    <nav className={`h-16 flex items-center justify-between px-6 ${isDesktop ? `${activeTheme.card.split(' ')[0]} border-b border-slate-200` : 'fixed top-0 left-0 right-0 max-w-[500px] mx-auto z-40 backdrop-blur-md bg-transparent/10 border-b border-white/10'}`}>
+      <div className="flex items-center gap-2">
+        <div className="w-2 h-2 bg-amber-700 rounded-full animate-pulse shadow-[0_0_8px_rgba(180,83,9,0.5)]" />
+        <span className="font-cinzel text-xs font-bold tracking-widest opacity-80 uppercase">Catholic Prayer Planner</span>
+      </div>
+      <div className="flex items-center gap-4">
+        {isGeminiAvailable !== false && (
+          <button
+            onClick={() => setIsAIPromptOpen(true)}
+            disabled={isGeminiAvailable === null}
+            className={`p-2 rounded-full transition-all ${isGeneratingInsight ? 'animate-pulse text-amber-500' : 'opacity-40 hover:opacity-100'} ${isGeminiAvailable === null ? 'cursor-wait' : ''}`}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          </button>
+        )}
+        <button onClick={() => setIsSettingsOpen(true)} className="p-2 opacity-40 hover:opacity-100 transition-all">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+        </button>
+      </div>
+    </nav>
+  );
+
   return (
     <main className={`flex flex-col flex-1 h-screen relative overflow-hidden transition-colors duration-500 ${activeTheme.main}`}>
 
-      {/* Top Toolbar */}
-      <nav className="fixed top-0 left-0 right-0 max-w-[500px] mx-auto h-16 flex items-center justify-between px-6 z-40 backdrop-blur-md bg-transparent/10 border-b border-white/10">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-amber-700 rounded-full animate-pulse shadow-[0_0_8px_rgba(180,83,9,0.5)]" />
-          <span className="font-cinzel text-xs font-bold tracking-widest opacity-80 uppercase">Catholic Prayer Planner</span>
-        </div>
-        <div className="flex items-center gap-4">
-          {isGeminiAvailable !== false && (
-            <button
-              onClick={() => setIsAIPromptOpen(true)}
-              disabled={isGeminiAvailable === null}
-              className={`p-2 rounded-full transition-all ${isGeneratingInsight ? 'animate-pulse text-amber-500' : 'opacity-40 hover:opacity-100'} ${isGeminiAvailable === null ? 'cursor-wait' : ''}`}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-            </button>
-          )}
-          <button onClick={() => setIsSettingsOpen(true)} className="p-2 opacity-40 hover:opacity-100 transition-all">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-          </button>
-        </div>
-      </nav>
+      {/* Top Toolbar - Mobile */}
+      {!isDesktop && topToolbar}
 
       <div className="flex-1 overflow-y-auto pb-24 no-scrollbar">
+        {/* Top Toolbar - Desktop */}
+        {isDesktop && topToolbar}
         {isLoading && (
           <div className="fixed inset-0 z-[200] bg-inherit flex items-center justify-center">
             <div className="text-center space-y-6 animate-fade-in">
@@ -264,6 +278,7 @@ const App: React.FC = () => {
         {activeTab === 'home' && (
           <HomeTab
             theme={currentTheme}
+            isDesktop={isDesktop}
             reflection={reflection}
             allReflections={allReflections}
             aiInsight={aiInsight}
@@ -282,6 +297,7 @@ const App: React.FC = () => {
         {activeTab === 'planner' && (
           <PlannerTab
             theme={currentTheme}
+            isDesktop={isDesktop}
             events={plannerEvents}
             onAddEvent={handleAddEvent}
             onUpdateEvent={handleUpdateEvent}
@@ -293,6 +309,7 @@ const App: React.FC = () => {
         {activeTab === 'churches' && (
           <ChurchTab
             theme={currentTheme}
+            isDesktop={isDesktop}
             favoriteChurches={allChurches}
             isGeminiAvailable={!!isGeminiAvailable}
             onAddFavorite={handleAddFavoriteChurch}
@@ -332,6 +349,7 @@ const App: React.FC = () => {
         {activeTab === 'library' && (
           <LibraryTab
             theme={currentTheme}
+            isDesktop={isDesktop}
             prayers={allPrayers}
             onAddPrayer={handleAddPrayer}
             onUpdatePrayer={handleUpdatePrayer}

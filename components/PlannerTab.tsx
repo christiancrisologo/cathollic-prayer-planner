@@ -5,6 +5,7 @@ import { THEMES } from '../constants';
 
 interface PlannerTabProps {
     theme: ThemeType;
+    isDesktop: boolean;
     events: PrayerEvent[];
     onAddEvent: (event: PrayerEvent) => void;
     onUpdateEvent: (event: PrayerEvent) => void;
@@ -12,7 +13,7 @@ interface PlannerTabProps {
     onDeleteEvents: (ids: string[]) => void;
 }
 
-const PlannerTab: React.FC<PlannerTabProps> = ({ theme, events, onAddEvent, onUpdateEvent, onDeleteEvent, onDeleteEvents }) => {
+const PlannerTab: React.FC<PlannerTabProps> = ({ theme, isDesktop, events, onAddEvent, onUpdateEvent, onDeleteEvent, onDeleteEvents }) => {
     const activeTheme = THEMES[theme];
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split('T')[0]);
@@ -100,7 +101,7 @@ const PlannerTab: React.FC<PlannerTabProps> = ({ theme, events, onAddEvent, onUp
     };
 
     return (
-        <div className="p-6 space-y-6 pt-20 animate-fade-in relative min-h-full">
+        <div className={`p-6 space-y-6 ${isDesktop ? '' : 'pt-20'} animate-fade-in relative min-h-full`}>
             <header>
                 <h2 className="font-cinzel text-2xl font-bold tracking-tight">Prayer Planner</h2>
                 <p className="opacity-60 text-xs italic font-medium">Schedule your sacred moments.</p>

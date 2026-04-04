@@ -6,6 +6,7 @@ import SpeakerIcon from './shared/SpeakerIcon';
 
 interface LibraryTabProps {
     theme: ThemeType;
+    isDesktop: boolean;
     prayers: Prayer[];
     onAddPrayer: (prayer: Prayer) => void;
     onUpdatePrayer: (prayer: Prayer) => void;
@@ -16,6 +17,7 @@ interface LibraryTabProps {
 
 const LibraryTab: React.FC<LibraryTabProps> = ({
     theme,
+    isDesktop,
     prayers,
     onAddPrayer,
     onUpdatePrayer,
@@ -82,7 +84,7 @@ const LibraryTab: React.FC<LibraryTabProps> = ({
     const isFormValid = !!(newPrayer.title?.trim() && newPrayer.content?.trim() && newPrayer.category?.trim());
 
     return (
-        <div className="flex flex-col h-full p-6 pt-24 space-y-6 animate-fade-in no-scrollbar pb-24">
+        <div className={`flex flex-col h-full p-6 ${isDesktop ? 'pt-4' : 'pt-24'} space-y-6 animate-fade-in no-scrollbar pb-24`}>
             <div className="flex items-center justify-between">
                 <div>
                     <h2 className="font-cinzel text-3xl font-bold tracking-tight  ">Prayers</h2>
